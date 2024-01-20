@@ -485,7 +485,7 @@ function findCommonElements(arr1, arr2) {
 }
 
 /**
- * Finds the length of the longest increasing subsequence of a given array of integers.
+ *
  *
  * @param {array} nums - The array of integers.
  * @return {number} - The length of the longest increasing subsequence.
@@ -495,8 +495,23 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  let sequence = 1;
+
+  return Math.max(
+    ...nums.reduce(
+      (arr, cur, idx) => {
+        if (cur < nums[idx + 1]) {
+          arr.push((sequence += 1));
+        } else {
+          sequence = 1;
+          arr.push(sequence);
+        }
+        return arr;
+      },
+      [1]
+    )
+  );
 }
 
 /**
